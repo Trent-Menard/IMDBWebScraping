@@ -1,5 +1,6 @@
-package com.github.trentmenard;
+package com.github.trentmenard.scrapers;
 
+import com.github.trentmenard.helpers.Movie;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
