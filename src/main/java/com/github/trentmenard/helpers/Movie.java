@@ -8,10 +8,10 @@ import java.util.List;
 public class Movie {
     private final String title;
     private String maturityRating;
-    private double budget;
-    private double revenue;
-    private double profit;
-    private Date releaseDate;
+    private int budget;
+    private int revenue;
+    private int profit;
+    private String releaseDate;
     private final List<String> genres = new ArrayList<>();
     private final List<Director> directors = new ArrayList<>();
     private final int rank;
@@ -27,19 +27,19 @@ public class Movie {
         this.maturityRating = maturityRating;
     }
 
-    public void setBudget(double budget) {
+    public void setBudget(int budget) {
         this.budget = budget;
     }
 
-    public void setRevenue(double revenue) {
+    public void setRevenue(int revenue) {
         this.revenue = revenue;
     }
 
-    public void setProfit(double profit) {
+    public void setProfit(int profit) {
         this.profit = profit;
     }
 
-    public void setReleaseDate(Date releaseDate) {
+    public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
     }
 
@@ -55,10 +55,45 @@ public class Movie {
         return url;
     }
 
+    public String getMaturityRating() {
+        return maturityRating;
+    }
+
+    public int getBudget() {
+        return budget;
+    }
+
+    public int getRevenue() {
+        return revenue;
+    }
+
+    public int getProfit() {
+        return profit;
+    }
+
+    public String getReleaseDate() {
+        return releaseDate;
+    }
+
+    public List<String> getGenres() {
+        return genres;
+    }
+
+    public List<Director> getDirectors() {
+        return directors;
+    }
+
     @Override
     public String toString() {
         return "Movie{" +
                 "title='" + title + '\'' +
+                ", maturityRating='" + maturityRating + '\'' +
+                ", budget=" + budget +
+                ", revenue=" + revenue +
+                ", profit=" + profit +
+                ", releaseDate='" + releaseDate + '\'' +
+                ", genres=" + genres +
+                ", directors=" + directors +
                 ", rank=" + rank +
                 ", url=" + url +
                 '}';

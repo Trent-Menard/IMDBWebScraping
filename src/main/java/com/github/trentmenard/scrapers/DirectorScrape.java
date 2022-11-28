@@ -26,9 +26,7 @@ public class DirectorScrape {
             moviePage = Jsoup.connect(movie.getUrl().toString()).get();
 
             // Scrape & create List<Director> from Director's name & url.
-            nameAndURL("Director");
-//            check("Writer");
-//            check("Stars");
+            nameAndURL();
         } catch (IOException e) {throw new RuntimeException(e);}
 
         this.directors.forEach(d -> {
@@ -43,8 +41,8 @@ public class DirectorScrape {
         });
     }
 
-    private void nameAndURL(String elementAttr){
-        Element targetPreCheck = moviePage.getElementsContainingOwnText(elementAttr).first();
+    private void nameAndURL(){
+        Element targetPreCheck = moviePage.getElementsContainingOwnText("Director").first();
         Elements targets;
 
         if (targetPreCheck != null && !(targetPreCheck.text().isEmpty())){
@@ -63,18 +61,18 @@ public class DirectorScrape {
                     } catch (MalformedURLException ex) {throw new RuntimeException(ex);}
                 });
             } else
-                Logger.getAnonymousLogger().log(Level.WARNING,"Unable to find " + elementAttr + "'s 'a href'; set " + elementAttr + " name/url failed.");
+                Logger.getAnonymousLogger().log(Level.WARNING,"Unable to find " + "Director" + "'s 'a href'; set " + "Director" + " name/url failed.");
         }
         else
-            Logger.getAnonymousLogger().log(Level.WARNING,"Unable to find " + elementAttr + " element; set " + elementAttr + " name/url failed.");
+            Logger.getAnonymousLogger().log(Level.WARNING,"Unable to find " + "Director" + " element; set " + "Director" + " name/url failed.");
     }
 
     private void directorPage(Director director){
 
         Elements elem2 = directorsPage.getElementsByClass("name-trivia-bio-text");
-        String bio = "UNKNOWN";
-        String birthday = "UNKNOWN";
-        String birthplace = "UNKNOWN";
+        String bio = null;
+        String birthday = null;
+        String birthplace = null;
         int age = -1;
 
         if (!elem2.isEmpty()){
@@ -84,6 +82,9 @@ public class DirectorScrape {
                 bio = bio.substring(0, 297);
                 bio += "...";
             }
+            // Escape single quote with another single quote.
+            bio = bio.replaceAll("'", "''");
+            bio = bio.replaceAll(" See full bio »", "");
         }
         else
             Logger.getAnonymousLogger().log(Level.WARNING,"Unable to find class 'name-trivia-bio-text'; set bio failed.");
@@ -106,11 +107,6 @@ public class DirectorScrape {
         director.setBirthday(birthday);
         director.setBirthplace(birthplace);
         director.setAge(age);
-
-//        Element elementPreCheck = this.directorsPage.getElementById("name-born-info");
-//        if (elementPreCheck != null){
-//            System.out.println(elementPreCheck.getElementsByTag("time"));
-//        }
     }
 
     public List<Director> getDirectors() {

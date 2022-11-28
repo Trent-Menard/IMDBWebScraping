@@ -4,18 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="de954b35-6ff6-4d7a-bd0a-0ee3f7d203a7" name="Changes" comment="Push for remote dev">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/github/trentmenard/helpers/Director.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/github/trentmenard/helpers/Movie.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/github/trentmenard/helpers/Person.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/github/trentmenard/scrapers/DirectorScrape.java" afterDir="false" />
+    <list default="true" id="de954b35-6ff6-4d7a-bd0a-0ee3f7d203a7" name="Changes" comment="Implement DirectorScrape. Some data inconsistencies (not finding elements) b/c JSoup doesn't support JS so elems don't generate.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/github/trentmenard/scrapers/MovieScrape.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/trentmenard/Director.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/trentmenard/GenreScrape.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/trentmenard/scrapers/GenreScrape.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/github/trentmenard/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/trentmenard/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/trentmenard/Movie.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/trentmenard/MovieScrape.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/trentmenard/helpers/Movie.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/trentmenard/helpers/Movie.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/trentmenard/scrapers/DirectorScrape.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/trentmenard/scrapers/DirectorScrape.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/github/trentmenard/scrapers/GenreScrape.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/github/trentmenard/scrapers/GenreScrape.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +48,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.github.trentmenard.scrapers" />
       <recent name="com.github.trentmenard" />
     </key>
   </component>
@@ -90,8 +86,18 @@
       <workItem from="1669186728510" duration="48000" />
       <workItem from="1669186794469" duration="10221000" />
       <workItem from="1669336304070" duration="31901000" />
-      <workItem from="1669537219384" duration="5563000" />
+      <workItem from="1669537219384" duration="9884000" />
+      <workItem from="1669611465899" duration="6983000" />
+      <workItem from="1669649683826" duration="15093000" />
     </task>
+    <task id="LOCAL-00001" summary="Implement DirectorScrape. Some data inconsistencies (not finding elements) b/c JSoup doesn't support JS so elems don't generate.">
+      <created>1669543414837</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1669543414837</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -107,5 +113,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Implement DirectorScrape. Some data inconsistencies (not finding elements) b/c JSoup doesn't support JS so elems don't generate." />
+    <option name="LAST_COMMIT_MESSAGE" value="Implement DirectorScrape. Some data inconsistencies (not finding elements) b/c JSoup doesn't support JS so elems don't generate." />
   </component>
 </project>

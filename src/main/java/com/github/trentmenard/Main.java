@@ -1,7 +1,17 @@
 package com.github.trentmenard;
 
+import com.github.trentmenard.helpers.Movie;
+import com.github.trentmenard.helpers.Person;
 import com.github.trentmenard.scrapers.DirectorScrape;
 import com.github.trentmenard.scrapers.GenreScrape;
+import com.github.trentmenard.scrapers.MovieScrape;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Main {
     public static void main(String[] args) {
@@ -11,32 +21,72 @@ public class Main {
         System.setProperty("http.proxyPort", "443");
 
         GenreScrape genreScrape = new GenreScrape();
+        StringBuilder sb = new StringBuilder();
 
+        AtomicInteger i = new AtomicInteger(1);
         genreScrape.getMovies().forEach(gs -> {
             DirectorScrape directorScrape = new DirectorScrape(gs);
+            System.out.println(i.get() + " / 50");
             System.out.println(gs.getTitle() + " directed by:\n" + directorScrape.getDirectors());
+            i.getAndIncrement();
             System.out.println();
+
+            // Not good; director needs to be converted to complex attribute or discard other writers?
+            sb.append("INSERT INTO Person\n")
+                    .append("VALUES('")
+                    .append(directorScrape.getDirectors().stream().map(Person::getName).toList())
+                    .append("','")
+                    .append(directorScrape.getDirectors().stream().map(Person::getBirthday).toList())
+                    .append("','")
+                    .append(directorScrape.getDirectors().stream().map(Person::getBirthplace).toList())
+                    .append("','")
+                    .append(directorScrape.getDirectors().stream().map(Person::getBio).toList())
+                    .append("');\n\n");
+
+
+            sb.append("INSERT INTO Director('")
+                    .append(directorScrape.getDirectors().stream().map(Person::getName).toList())
+                    .append("');\n\n");
+
+
+            sb.append("INSERT INTO Directed\n")
+                    .append("VALUES('")
+                    .append(gs.getTitle())
+                    .append("','")
+                    .append(gs.getReleaseDate())
+                    .append("','")
+                    .append(directorScrape.getDirectors().stream().map(Person::getName).toList())
+                    .append("');\n\n");
+
+
+            sb.append("INSERT INTO Movie\n")
+                    .append("VALUES('")
+                    .append(gs.getTitle())
+                    .append("','")
+                    .append(gs.getReleaseDate())
+                    .append("','")
+                    .append(gs.getMaturityRating())
+                    .append("',")
+                    .append(gs.getRevenue())
+                    .append(",")
+                    .append(gs.getBudget())
+                    .append(");\n\n\n");
         });
 
-// "https://www.imdb.com/title/tt9114286/?ref_=adv_li_tt");
-//        try {
-//            // Connect to director's page.
-////            Document directorsPage = Jsoup.connect("https://www.imdb.com/name/nm3363032/?ref_=tt_ov_dr").get();
-//
-//
-//            // Inconsistent results
-////            Elements v = directorsPage.select("section.ipc-page-section.ipc-page-section--base");
-//
-//            // Inconsistent results
-////            Elements els = directorsPage.selectXpath("/html/body/div[2]/div/div[2]/div[3]/div[3]/div[3]/h2");
-////            System.out.println(els.nextAll());
-////            els.forEach(s -> System.out.println(s));
-//
-//            // Inconsistent results
-////            System.out.println(directorsPage.selectXpath("/html/body/div[2]/main/div/section[1]/div/section/div/div[1]/div[4]/section[1]/div[1]/hgroup/h3").text());
-////            System.out.println(directorsPage.selectXpath("/html/body/div[2]/main/div/section[1]/div/section/div/div[1]/div[4]/section[1]/div[1]/hgroup/h3").text());
-////            System.out.println(e);
-//
-//        } catch (IOException e) {throw new RuntimeException(e);}
+        try {
+            String data = String.valueOf(sb);
+
+            FileWriter file = new FileWriter("IMDB.txt");
+
+            BufferedWriter output = new BufferedWriter(file);
+
+            output.write(data);
+
+            output.flush();
+
+            System.out.println("Done!");
+
+            output.close();
+        } catch (IOException e) {throw new RuntimeException(e);}
     }
 }

@@ -25,9 +25,9 @@ public class GenreScrape {
 
             movieElements.forEach(e ->
             {
-                String title = "UNKNOWN";
+                String title = null;
                 int rank = -1;
-                URL url = null;
+                URL url;
                 try {url = new URL("https://www.imdb.com/");} catch (MalformedURLException ex) {throw new RuntimeException(ex);}
 
                 if (!(e.selectFirst("a").text().isEmpty()))
