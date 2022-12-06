@@ -1,16 +1,14 @@
 package com.github.trentmenard.helpers;
 
-import java.net.URL;
-
 public class Director extends Person {
-    private final URL url;
+    private final String url;
 
-    public Director(String name, URL url) {
+    public Director(String name, String url) {
         super(name);
         this.url = url;
     }
 
-    public URL getUrl() {
+    public String getUrl() {
         return url;
     }
 

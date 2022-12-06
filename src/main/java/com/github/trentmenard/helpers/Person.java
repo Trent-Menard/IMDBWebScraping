@@ -1,15 +1,14 @@
 package com.github.trentmenard.helpers;
 
-import java.util.List;
+import com.github.trentmenard.AutobiographyPage;
 
 public abstract class Person {
     private final String name;
     private String birthday;
     private String birthplace;
-    private String bio;
+    private AutobiographyPage bio;
     private int age;
-    private List<Movie> knownFor;
-
+//    private List<Movie> knownFor;
     public Person(String name) {
         this.name = name;
     }
@@ -26,7 +25,7 @@ public abstract class Person {
         return birthplace;
     }
 
-    public String getBio() {
+    public AutobiographyPage getBio() {
         return bio;
     }
 
@@ -34,9 +33,14 @@ public abstract class Person {
         return age;
     }
 
-    public List<Movie> getKnownFor() {
-        return knownFor;
-    }
+//    public List<Movie> getKnownFor() {
+//        return knownFor;
+//    }
+
+//    public void setKnownFor(List<Movie> knownFor) {
+//        this.knownFor = knownFor;
+//    }
+
 
     public void setBirthday(String birthday) {
         this.birthday = birthday;
@@ -46,16 +50,8 @@ public abstract class Person {
         this.birthplace = birthplace;
     }
 
-    public void setBio(String bio) {
+    public void setBio(AutobiographyPage bio) {
         this.bio = bio;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public void setKnownFor(List<Movie> knownFor) {
-        this.knownFor = knownFor;
     }
 
     @Override
@@ -66,7 +62,7 @@ public abstract class Person {
                 ", birthplace='" + birthplace + '\'' +
                 ", bio='" + bio + '\'' +
                 ", age=" + age +
-                ", knownFor=" + knownFor +
+//                ", knownFor=" + knownFor +
                 '}';
     }
 }
